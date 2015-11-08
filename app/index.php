@@ -16,9 +16,7 @@
 
 //if( ! ini_get('date.timezone') )
 //{
-  date_default_timezone_set('america/brasilia');
+  date_default_timezone_set('america/sao_paulo');
 //}
-
-  echo time(); die("aaaa");
 
 //require 'webroot' . DIRECTORY_SEPARATOR . 'index.php';
