@@ -1,7 +1,7 @@
 <?php
     class UsersController extends AppController {
 
-
+    public $helpers = array('Facebook.Facebook');
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add', 'logout');

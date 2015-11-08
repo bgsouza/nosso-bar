@@ -8,4 +8,5 @@
     ?>
     </fieldset>
 <?php echo $this->Form->end(__('Login'));?>
+<?php echo $this->Facebook->login(array('perms' => 'email')); ?>
 </div>

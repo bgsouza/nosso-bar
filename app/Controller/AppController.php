@@ -32,14 +32,30 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-  public $components = array(
+    public $helpers = array('Facebook.Facebook');
+    public $components = array(
         'DebugKit.Toolbar',
         'Flash',
-        'Auth' => array(
-            'loginRedirect' => array('controller' => 'posts', 'action' => 'index'),
-            'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home')
-        )
+        // 'Auth' => array(
+        //     'loginRedirect' => array('controller' => 'posts', 'action' => 'index'),
+        //     'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home')
+        // ),
+        'Session',
+            'Auth' => array(
+                'authenticate' => array(
+                    'Form' => array(
+                        'fields' => array('username' => 'email')
+                    )
+                ),
+                'authorize' => 'Controller'
+            ),
+        'Facebook.Connect' => array('model' => 'User')
     );
+
+    public function index() {
+        $this->User->recursive = 0;
+        $this->set('users', $this->paginate());
+    }
 
     function beforeFilter() {
         $this->Auth->allow('index', 'view');
