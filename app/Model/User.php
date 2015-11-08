@@ -7,13 +7,13 @@
         public $validate = array(
             'nome' => array(
                 'required' => array(
-                    'rule' => array('notEmpty'),
+                    'rule' => array('notBlank'),
                     'message' => 'A username is required'
                 )
             ),
             'senha' => array(
                 'required' => array(
-                    'rule' => array('notEmpty'),
+                    'rule' => array('notBlank'),
                     'message' => 'A password is required'
                 )
             )
