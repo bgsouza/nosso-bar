@@ -20,13 +20,21 @@
     }
 
     public function add() {
+
         if ($this->request->is('post')) {
-            $this->User->create();
-            if ($this->User->save($this->request->data)) {
-                $this->Flash->success(__('The user has been saved'));
-                $this->redirect(array('action' => 'index'));
+
+            $conditions = array('User.username' => $this->request->data["User"]["username"]);
+
+            if(!$this->User->hasAny($conditions)) {
+                $this->User->create();
+                if ($this->User->save($this->request->data)) {
+                    $this->Flash->success(__('The user has been saved'));
+                    $this->redirect(array('action' => 'index'));
+                } else {
+                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                }
             } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $this->Flash->error(__('Usuário já existe!'));
             }
         }
     }
@@ -66,10 +74,12 @@
     }
 
     public function login() {
-        if ($this->Auth->login()) {
-            $this->redirect($this->Auth->redirect());
-        } else {
-            $this->Flash->error(__('Invalid username or password, try again'));
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                $this->redirect($this->Auth->redirect());
+            } else {
+                $this->Flash->error(__('Invalid username or password, try again'));
+            }
         }
     }
 

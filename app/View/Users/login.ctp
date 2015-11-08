@@ -9,4 +9,5 @@
     </fieldset>
 <?php echo $this->Form->end(__('Login'));?>
 <?php echo $this->Facebook->login(array('perms' => 'email')); ?>
+<?php echo $this->Facebook->logout(array('label' => 'Logout', 'redirect' => array('controller' => 'users', 'action' => 'logout'))); ?>
 </div>
