@@ -5,15 +5,15 @@
 
         public $name = 'Usuario';
         public $validate = array(
-            'nome' => array(
+            'username' => array(
                 'required' => array(
-                    'rule' => array('notBlank'),
+                    'rule' => array('notEmpty'),
                     'message' => 'A username is required'
                 )
             ),
-            'senha' => array(
+            'password' => array(
                 'required' => array(
-                    'rule' => array('notBlank'),
+                    'rule' => array('notEmpty'),
                     'message' => 'A password is required'
                 )
             )
